@@ -18,9 +18,19 @@
                                 <MenuItem Clicked="OnDeleteItem" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
                             </ViewCell.ContextActions>
                             <StackLayout x:Name="cellLayout" Padding="10,5,10,5" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                                <Image Aspect="AspectFit" Source="{Binding ImageUrl}" VerticalOptions="FillAndExpand" />
-                                <StackLayout x:Name="DetailsLayout" Padding="10,0,0,0" HorizontalOptions="FillAndExpand">
-                                    <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="16" TextColor="Black" />
+                                <Image Aspect="AspectFill" Source="{Binding ImageUrl}" 
+                                       WidthRequest="140" HeightRequest="140"
+                                       VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
+                                       />
+                                <StackLayout x:Name="DetailsLayout" Padding="5,0" HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="Black">
+                                        <Label.FontSize>
+                                            <OnPlatform x:TypeArguments="x:Double">
+                                                <On Platform="Android, WinPhone" Value="14" />
+                                                <On Platform="iOS" Value="16" />
+                                            </OnPlatform>
+                                        </Label.FontSize>
+                                    </Label>
                                     <Label Text="{Binding Description}" FontAttributes="None" TextColor="Blue" FontSize="12" />
                                 </StackLayout>
                             </StackLayout>
