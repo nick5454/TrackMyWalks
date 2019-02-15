@@ -20,13 +20,16 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\WalkDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\ILocationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\INavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\LocationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WalkDistancePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WalkEntryPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WalksMainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WalkTrailInfoPageViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Views\CustomMapOverlay.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Views\SplashPage.xaml.cs">
       <DependentUpon>SplashPage.xaml</DependentUpon>
       <SubType>Code</SubType>

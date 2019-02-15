@@ -78,11 +78,24 @@ namespace TrackMyWalks.ViewModels
 			set { App.SelectedItem.ImageUrl = value; OnPropertyChanged(); }
 		}
 
+		public async Task GetMyLocation()
+		{
+			var position = await new LocationService().GetCurrentPosition();
+
+			if (position == null) return;
+
+			if(App.SelectedItem.Latitude.Equals(0) && App.SelectedItem.Longitude.Equals(0))
+			{
+				Latitude = position.Latitude;
+				Longitude = position.Longitude;
+			}
+		}
+
 		public override async Task InitAsync()
 		{
-			await Task.Factory.StartNew(() =>
+			await Task.Factory.StartNew(async () =>
 		   {
-
+			   await GetMyLocation();
 		   });
 		}
 	}
