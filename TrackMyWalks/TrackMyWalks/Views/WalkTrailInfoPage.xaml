@@ -2,15 +2,48 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="TrackMyWalks.Views.WalkTrailInfoPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="labelTrailName" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Style" Value="{DynamicResource TitleStyle}" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="labelTrailKilometers" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Style" Value="{DynamicResource CaptionStyle}" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="labelTrailDifficulty" TargetType="Label">
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="Style" Value="{DynamicResource ListItemTextStyles}" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+            <Style x:Key="labelTrailDescription" TargetType="Label" >
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="Style" Value="{DynamicResource BodyStyle}" />
+                <Setter Property="TextColor" Value="MidnightBlue" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView Padding="5,0,2,5">
+        <ScrollView >
+            <ScrollView.Padding>
+                <OnPlatform x:TypeArguments="Thickness">
+                    <On Platform="Android, WinPhone" Value="2,0" />
+                    <On Platform="iOS" Value="2,0" />
+                </OnPlatform>
+            </ScrollView.Padding>
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                 <Image x:Name="TrailImage" Aspect="AspectFill" Source="{Binding ImageUrl}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
-                <Label x:Name="TrailName" FontSize="28" FontAttributes="Bold" TextColor="Black" Text="{Binding Title}"/>
-                <Label x:Name="TrailKilometers" FontSize="12" TextColor="Black" Text="{Binding Distance, StringFormat='Kilometers: {0} 0km'}" />
-                <Label x:Name="TrailDifficulty" FontSize="12" TextColor="Black" Text="{Binding Difficulty, StringFormat='Difficulty: {0}'}" />
-                <Label x:Name="TrailFullDescription" FontSize="11" TextColor="Black" Text="{Binding Description}" HorizontalOptions="FillAndExpand" />
-                <Button x:Name="BeginTrailWalk" Text="Begin This Trail" TextColor="White" BackgroundColor="#008080" Clicked="BeginTrailWalk_Clicked" />
+                <Label x:Name="TrailName" Text="{Binding Title}" Style="{StaticResource labelTrailName}"/>
+                <Label x:Name="TrailKilometers" Text="{Binding Distance, StringFormat='Kilometers: {0} 0km'}" Style="{StaticResource labelTrailKilometers}" />
+                <Label x:Name="TrailDifficulty" Text="{Binding Difficulty, StringFormat='Difficulty: {0}'}" Style="{StaticResource labelTrailDifficulty}" />
+                <Label x:Name="TrailFullDescription" Text="{Binding Description}" HorizontalOptions="FillAndExpand" Style="{StaticResource labelTrailDescription}" />
+                <Button x:Name="BeginTrailWalk" Text="Begin This Trail" Clicked="BeginTrailWalk_Clicked" Margin="20" Style="{StaticResource buttonStyle}" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

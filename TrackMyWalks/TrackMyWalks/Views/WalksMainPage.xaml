@@ -17,13 +17,25 @@
                                 <MenuItem Clicked="OnEditItem" CommandParameter="{Binding .}" Text="Edit" IsDestructive="False" />
                                 <MenuItem Clicked="OnDeleteItem" CommandParameter="{Binding .}" Text="Delete" IsDestructive="True" />
                             </ViewCell.ContextActions>
-                            <StackLayout x:Name="cellLayout" Padding="10,5,10,5" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <StackLayout x:Name="cellLayout" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                                <StackLayout.Padding>
+                                    <OnPlatform x:TypeArguments="Thickness">
+                                        <On Platform="Android, WinPhone" Value="0,0" />
+                                        <On Platform="iOS" Value="2,2" />
+                                    </OnPlatform>
+                                </StackLayout.Padding>
                                 <Image Aspect="AspectFill" Source="{Binding ImageUrl}" 
                                        WidthRequest="140" HeightRequest="140"
                                        VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand"
                                        />
-                                <StackLayout x:Name="DetailsLayout" Padding="5,0" HorizontalOptions="FillAndExpand">
-                                    <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="Black">
+                                <StackLayout x:Name="DetailsLayout" HorizontalOptions="FillAndExpand">
+                                    <StackLayout.Padding>
+                                        <OnPlatform x:TypeArguments="Thickness">
+                                            <On Platform="Android, WinPhone" Value="5,0" />
+                                            <On Platform="iOS" Value="5,0" />
+                                        </OnPlatform>
+                                    </StackLayout.Padding>
+                                    <Label Text="{Binding Title}" FontAttributes="Bold" TextColor="Black" Style="{DynamicResource TitleStyle}">
                                         <Label.FontSize>
                                             <OnPlatform x:TypeArguments="x:Double">
                                                 <On Platform="Android, WinPhone" Value="14" />
@@ -31,7 +43,15 @@
                                             </OnPlatform>
                                         </Label.FontSize>
                                     </Label>
-                                    <Label Text="{Binding Description}" FontAttributes="None" TextColor="Blue" FontSize="12" />
+                                    <Label Text="{Binding Distance, StringFormat='Kilometers: {0} km'}" Style="{DynamicResource CaptionStyle}"
+                                           FontAttributes="Bold" FontSize="12" TextColor="#666" />
+                                    <Label Text="{Binding Difficulty, StringFormat='Difficulty: {0}'}" Style="{DynamicResource ListItemTextStyle}"
+                                           FontAttributes="Bold" FontSize="12" TextColor="Black" />
+                                    <StackLayout Spacing="3" Orientation="Vertical">
+                                        <Label Text="{Binding Description}" 
+                                               FontAttributes="None" TextColor="Blue" FontSize="12" VerticalOptions="FillAndExpand"
+                                               Style="{DynamicResource BodyStyle}"/>
+                                    </StackLayout>
                                 </StackLayout>
                             </StackLayout>
                         </ViewCell>

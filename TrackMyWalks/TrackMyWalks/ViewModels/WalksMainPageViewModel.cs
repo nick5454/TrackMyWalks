@@ -38,7 +38,7 @@ namespace TrackMyWalks.ViewModels
 					Longitude = 117.3560796,
 					Distance = 450,
 					Difficulty = "Hard",
-					ImageUrl = "http://trailswa.com.au/media/cache/media/images/trails/_mid/Ancient_Empire_534480_c1.jpg"
+					ImageUrl = "http://trailswa.com.au/media/cache/media/images/trails/_mid/Ancient_Empire_534_480_c1.jpg"
 				}
 			};
 
