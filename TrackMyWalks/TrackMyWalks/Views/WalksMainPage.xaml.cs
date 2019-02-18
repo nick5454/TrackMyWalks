@@ -96,6 +96,21 @@ namespace TrackMyWalks.Views
 				await _viewModel.InitAsync();
 			}
 
+			WalkEntriesListView.Opacity = 0;
+			await WalkEntriesListView.FadeTo(1, 4000);
+
+			var parentAnimation = new Animation();
+
+			var ZoomInAnimation = new Animation(v => LoadingWalkInfo.Scale = v, 1, 2, Easing.BounceIn, null);
+
+			parentAnimation.Add(0, 0.5, ZoomInAnimation);
+
+			var ZoomOutAnimation = new Animation(v => LoadingWalkInfo.Scale = v, 2, 1, Easing.BounceOut, null);
+
+			parentAnimation.Insert(0.5, 1, ZoomOutAnimation);
+
+			parentAnimation.Commit(this, "CustomAnimation", 16, 5000, null, null);
+
 			WalkEntriesListView.SetBinding(ItemsView<Cell>.ItemsSourceProperty, new Binding("."));
 			WalkEntriesListView.BindingContext = _viewModel.WalksListModel;
 		}

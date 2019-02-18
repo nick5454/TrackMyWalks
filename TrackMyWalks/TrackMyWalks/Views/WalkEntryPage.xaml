@@ -19,7 +19,7 @@
         <ToolbarItem Text="Save" Clicked="SaveWalkItem_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <TableView Intent="Form">
+        <TableView Intent="Form" x:Name="WalkDetails">
             <TableView.Root>
                 <TableSection Title="Enter Walk Trail Information">
                     <EntryCell Label="Title:" Text="{Binding Title}" Placeholder="Provide a title for this trail."/>
@@ -36,7 +36,8 @@
                                 </OnPlatform>
                             </StackLayout.Margin>
                             <Label Text="Difficulty:" VerticalOptions="Center"  />
-                            <Image Aspect="AspectFill" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start"
+                            <Image x:Name="DifficultyLevel"
+                                    Aspect="AspectFill" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start"
                                    Source="{Binding Difficulty, Converter={StaticResource imageConverter}}" />
                             <Picker Title="Choose Difficulty" VerticalOptions="Center" HorizontalOptions="EndAndExpand" SelectedIndex="{Binding Difficulty, Mode=TwoWay}">
                                 <Picker.ItemsSource>

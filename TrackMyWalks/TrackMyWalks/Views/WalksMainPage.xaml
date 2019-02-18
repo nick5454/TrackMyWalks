@@ -14,6 +14,21 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
+            <ActivityIndicator IsRunning="True" x:Name="progressIndicator"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               IsVisible="{Binding IsProcessBusy}" />
+            <Label x:Name="LoadingWalkInfo"
+                    Text="Loading Walk Information..." FontAttributes="Bold"
+                   TextColor="Black" HorizontalTextAlignment="Center"
+                   IsVisible="{Binding IsProcessBusy}">
+                <Label.FontSize >
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, WinPhone" Value="12" />
+                        <On Platform="iOS" Value="14" />
+                    </OnPlatform>
+                </Label.FontSize>
+            </Label>
             <ListView x:Name="WalkEntriesListView" RowHeight="80" HasUnevenRows="True"
                       SeparatorColor="#ddd"
                       ItemTapped="WalkEntriesListView_ItemTapped">

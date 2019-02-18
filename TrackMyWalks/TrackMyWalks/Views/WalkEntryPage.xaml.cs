@@ -41,5 +41,18 @@ namespace TrackMyWalks.Views
 			}
 			
 		}
+
+		protected override async void OnAppearing()
+		{
+			base.OnAppearing();
+
+			WalkDetails.RotationY = 180;
+			await WalkDetails.RotateYTo(0, 1000, Easing.BounceOut);
+			WalkDetails.AnchorX = 0.5;
+
+			DifficultyLevel.AnchorY = (Math.Min(DifficultyLevel.Width, DifficultyLevel.Height)/2) / DifficultyLevel.Height;
+
+			await DifficultyLevel.RotateTo(360, 2000, Easing.BounceOut);
+		}
 	}
 }

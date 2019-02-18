@@ -31,7 +31,34 @@ namespace TrackMyWalks.Views
 				return;
 			}
 
+			await BeginTrailWalk.RotateTo(360, 1000);
+			BeginTrailWalk.Rotation = 0;
+
+			await BeginTrailWalk.RotateTo(15, 10000, new Easing(t =>
+				Math.Sin(Math.PI * t) * Math.Sin(Math.PI * 20 * t)));
+
 			await _viewModel.Navigation.NavigateTo<WalkDistancePageViewModel>();
+		}
+
+		protected override async void OnAppearing()
+		{
+			base.OnAppearing();
+
+			double offset = 1000;
+			foreach(View view in TrailInfoScollView.Children)
+			{
+				view.TranslationX = offset;
+				offset *= 1;
+				await Task.WhenAny(view.TranslateTo(0, 0, 1000, Easing.SpringOut), Task.Delay(100));
+			}
+			var animation = new Animation(v =>
+				BeginTrailWalk.BackgroundColor = Color.FromHsla(v, 1, 0.5), start: 0, end: 1);
+
+			animation.Commit(this, "BeginWalkCustomAnimation",
+				16,
+				5000,
+				Easing.Linear, (v, c) =>
+					BackgroundColor = Color.Default, () => true);
 		}
 	}
 }

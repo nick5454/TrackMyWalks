@@ -36,7 +36,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <ScrollView >
+        <ScrollView x:Name="TrailInfoScollView" >
             <ScrollView.Padding>
                 <OnPlatform x:TypeArguments="Thickness">
                     <On Platform="Android, WinPhone" Value="2,0" />
@@ -55,7 +55,9 @@
                 <Image Aspect="AspectFit" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start"
                        Source="{Binding Difficulty, Converter={StaticResource imageConverter}}" />
                 <Label x:Name="TrailFullDescription" Text="{Binding Description}" HorizontalOptions="FillAndExpand" Style="{StaticResource labelTrailDescription}" />
-                <Button x:Name="BeginTrailWalk" Text="Begin This Trail" Clicked="BeginTrailWalk_Clicked" Margin="20" Style="{StaticResource buttonStyle}" >
+                <Button x:Name="BeginTrailWalk" Text="Begin This Trail" 
+                        Clicked="BeginTrailWalk_Clicked" Margin="20" Style="{StaticResource buttonStyle}"
+                        >
                     <Button.Effects>
                         <customEffect:ButtonShadowEffect />
                     </Button.Effects>
