@@ -1,9 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customEffect="clr-namespace:TrackMyWalks.CustomEffects"
+             xmlns:valueConverters="clr-namespace:TrackMyWalks.ValueConverters"
              x:Class="TrackMyWalks.Views.WalkTrailInfoPage">
     <ContentPage.Resources>
         <ResourceDictionary>
+            <!-- Converters -->
+            <valueConverters:ImageConverter x:Key="imageConverter" />
+            
+            <!-- Styles -->
             <Style x:Key="labelTrailName" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="Start" />
                 <Setter Property="FontAttributes" Value="Bold" />
@@ -39,11 +45,21 @@
             </ScrollView.Padding>
             <StackLayout Orientation="Vertical" HorizontalOptions="FillAndExpand">
                 <Image x:Name="TrailImage" Aspect="AspectFill" Source="{Binding ImageUrl}" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"></Image>
-                <Label x:Name="TrailName" Text="{Binding Title}" Style="{StaticResource labelTrailName}"/>
+                <Label x:Name="TrailName" Text="{Binding Title}" Style="{StaticResource labelTrailName}">
+                    <Label.Effects>
+                        <customEffect:LabelShadowEffect />
+                    </Label.Effects>
+                </Label>
                 <Label x:Name="TrailKilometers" Text="{Binding Distance, StringFormat='Kilometers: {0} 0km'}" Style="{StaticResource labelTrailKilometers}" />
                 <Label x:Name="TrailDifficulty" Text="{Binding Difficulty, StringFormat='Difficulty: {0}'}" Style="{StaticResource labelTrailDifficulty}" />
+                <Image Aspect="AspectFit" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start"
+                       Source="{Binding Difficulty, Converter={StaticResource imageConverter}}" />
                 <Label x:Name="TrailFullDescription" Text="{Binding Description}" HorizontalOptions="FillAndExpand" Style="{StaticResource labelTrailDescription}" />
-                <Button x:Name="BeginTrailWalk" Text="Begin This Trail" Clicked="BeginTrailWalk_Clicked" Margin="20" Style="{StaticResource buttonStyle}" />
+                <Button x:Name="BeginTrailWalk" Text="Begin This Trail" Clicked="BeginTrailWalk_Clicked" Margin="20" Style="{StaticResource buttonStyle}" >
+                    <Button.Effects>
+                        <customEffect:ButtonShadowEffect />
+                    </Button.Effects>
+                </Button>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -1,7 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customEffect="clr-namespace:TrackMyWalks.CustomEffects"
+             xmlns:valueConverters="clr-namespace:TrackMyWalks.ValueConverters"
              x:Class="TrackMyWalks.Views.WalksMainPage">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <valueConverters:ImageConverter x:Key="imageConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Add" Clicked="AddWalk_Clicked" />
     </ContentPage.ToolbarItems>
@@ -42,11 +49,16 @@
                                                 <On Platform="iOS" Value="16" />
                                             </OnPlatform>
                                         </Label.FontSize>
+                                        <Label.Effects>
+                                            <customEffect:LabelShadowEffect />
+                                        </Label.Effects>
                                     </Label>
                                     <Label Text="{Binding Distance, StringFormat='Kilometers: {0} km'}" Style="{DynamicResource CaptionStyle}"
                                            FontAttributes="Bold" FontSize="12" TextColor="#666" />
                                     <Label Text="{Binding Difficulty, StringFormat='Difficulty: {0}'}" Style="{DynamicResource ListItemTextStyle}"
                                            FontAttributes="Bold" FontSize="12" TextColor="Black" />
+                                    <Image Aspect="AspectFit" HeightRequest="50" WidthRequest="50" HorizontalOptions="Start"
+                                           Source="{Binding Difficulty, Converter={StaticResource imageConverter}}" />
                                     <StackLayout Spacing="3" Orientation="Vertical">
                                         <Label Text="{Binding Description}" 
                                                FontAttributes="None" TextColor="Blue" FontSize="12" VerticalOptions="FillAndExpand"

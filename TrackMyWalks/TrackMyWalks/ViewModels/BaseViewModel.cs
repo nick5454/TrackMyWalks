@@ -32,7 +32,12 @@ namespace TrackMyWalks.ViewModels
 
 		public abstract Task InitAsync();
 
-
+		bool isProcessBusy;
+		public bool IsProcessBusy
+		{
+			get => isProcessBusy;
+			set { isProcessBusy = value; OnPropertyChanged(); }
+		}
 	}
 
 	public abstract class BaseViewModel<TParam> : BaseViewModel

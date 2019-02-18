@@ -14,8 +14,12 @@ namespace TrackMyWalks.ViewModels
 
 		public WalksMainPageViewModel(INavigationService navService) : base(navService) { }
 
-		public void GetWalkTrailItems()
+		public async Task GetWalkTrailItems()
 		{
+			if (IsProcessBusy) return;
+
+			IsProcessBusy = true;
+
 			WalksListModel = new ObservableCollection<WalkDataModel>
 			{
 				new WalkDataModel
@@ -42,13 +46,16 @@ namespace TrackMyWalks.ViewModels
 				}
 			};
 
+			await Task.Delay(3000); // temp timer for demoing
+
+			IsProcessBusy = false;
 		}
 
 		public override async Task InitAsync()
 		{
-			await Task.Factory.StartNew(() =>
+			await Task.Factory.StartNew(async () =>
 			{
-				GetWalkTrailItems();
+				await GetWalkTrailItems();
 			});
 		}
 	}

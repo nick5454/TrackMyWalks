@@ -69,6 +69,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomEffects\ButtonShadowEffect.cs" />
+    <Compile Include="CustomEffects\LabelShadowEffect.cs" />
     <Compile Include="CustomRenderers\CustomMapRenderer.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />

@@ -16,6 +16,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)CustomEffects\ButtonShadowEffect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)CustomEffects\LabelShadowEffect.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -24,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\INavigationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\LocationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ValueConverters\ImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WalkDistancePageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WalkEntryPageViewModel.cs" />
