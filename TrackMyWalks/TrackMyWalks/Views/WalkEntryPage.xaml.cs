@@ -28,7 +28,7 @@ namespace TrackMyWalks.Views
 		{
 			if(await DisplayAlert("Save Walk Entry Item", "Proceed and save changes?", "OK", "Cancel"))
 			{
-				if(!_viewModel.ValidateFormDetailsAndSave())
+				if(!await _viewModel.ValidateFormDetailsAndSave())
 				{
 					await DisplayAlert("Validation Error", "Title and description are required.", "Ok");
 				} else

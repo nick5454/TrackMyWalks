@@ -24,6 +24,7 @@ namespace TrackMyWalks.Droid
 
 			CrossCurrentActivity.Current.Init(this, savedInstanceState);
 
+			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
 
 			LoadApplication(new App());
         }

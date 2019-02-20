@@ -11,10 +11,12 @@ namespace TrackMyWalks.ViewModels
 	public abstract class BaseViewModel : INotifyPropertyChanged
 	{
 		public INavigationService Navigation { get; set; }
+		public IRestWebServices AzureDatabase { get; set; }
 		public const string PageTitlePropertyName = "PageTitle";
 
 		protected BaseViewModel(INavigationService navService) {
 			Navigation = navService;
+			AzureDatabase = new RestWebService();
 		}
 
 		string pageTitle;

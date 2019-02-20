@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -6,7 +7,8 @@ namespace TrackMyWalks.Models
 {
     public class WalkDataModel
     {
-		public int Id { get; set; }
+		[JsonProperty("id")]
+		public string Id { get; set; }
 		public string Title { get; set; }
 		public string Description { get; set; }
 		public double Latitude { get; set; }

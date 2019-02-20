@@ -19,6 +19,26 @@
         <ToolbarItem Text="Save" Clicked="SaveWalkItem_Clicked"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
+        <StackLayout>
+            <ActivityIndicator IsRunning="True" x:Name="progressIndicator"
+                               HorizontalOptions="CenterAndExpand"
+                               VerticalOptions="CenterAndExpand"
+                               IsVisible="{Binding IsProcessBusy}" />
+            <Label Text="Saving walk information..."
+                   FontAttributes="Bold"
+                   TextColor="MediumVioletRed"
+                   HorizontalTextAlignment="Center"
+                   IsVisible="{Binding IsProcessBusy}"
+                   x:Name="SavingWalkInfo" >
+                <Label.FontSize>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="Android, WinPhone" Value="12" />
+                        <On Platform="iOS" Value="14" />
+                    </OnPlatform>
+                                
+                </Label.FontSize>
+            </Label>
+        
         <TableView Intent="Form" x:Name="WalkDetails">
             <TableView.Root>
                 <TableSection Title="Enter Walk Trail Information">
@@ -56,5 +76,6 @@
                 </TableSection>
             </TableView.Root>
         </TableView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

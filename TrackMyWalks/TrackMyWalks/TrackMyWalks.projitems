@@ -22,10 +22,13 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Models\WalkDataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\AzureDataService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\ILocationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\INavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\IRestWebServices.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\LocationService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Services\NavigationService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\RestWebService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ValueConverters\ImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\BaseViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\WalkDistancePageViewModel.cs" />

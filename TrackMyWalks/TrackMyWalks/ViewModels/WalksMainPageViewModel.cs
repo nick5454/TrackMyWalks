@@ -20,6 +20,7 @@ namespace TrackMyWalks.ViewModels
 
 			IsProcessBusy = true;
 
+			/* hard coded data
 			WalksListModel = new ObservableCollection<WalkDataModel>
 			{
 				new WalkDataModel
@@ -45,6 +46,8 @@ namespace TrackMyWalks.ViewModels
 					ImageUrl = "http://trailswa.com.au/media/cache/media/images/trails/_mid/Ancient_Empire_534_480_c1.jpg"
 				}
 			};
+			*/
+			WalksListModel = new ObservableCollection<WalkDataModel>(await AzureDatabase.GetWalkEntries());
 
 			await Task.Delay(3000); // temp timer for demoing
 

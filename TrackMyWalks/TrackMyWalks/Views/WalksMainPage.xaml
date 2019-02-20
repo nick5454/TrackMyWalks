@@ -29,7 +29,7 @@
                     </OnPlatform>
                 </Label.FontSize>
             </Label>
-            <ListView x:Name="WalkEntriesListView" RowHeight="80" HasUnevenRows="True"
+            <ListView x:Name="WalkEntriesListView" RowHeight="140" HasUnevenRows="True"
                       SeparatorColor="#ddd"
                       ItemTapped="WalkEntriesListView_ItemTapped">
                 <ListView.ItemTemplate>

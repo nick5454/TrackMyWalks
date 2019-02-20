@@ -26,7 +26,10 @@ namespace TrackMyWalks.iOS
 			Xamarin.FormsMaps.Init();
             LoadApplication(new App());
 
-            return base.FinishedLaunching(app, options);
+			Microsoft.WindowsAzure.MobileServices.CurrentPlatform.Init();
+			//SQLitePCL.CurrentPlatform.Init();
+
+			return base.FinishedLaunching(app, options);
         }
     }
 }

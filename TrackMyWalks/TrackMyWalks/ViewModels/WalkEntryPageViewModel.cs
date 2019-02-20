@@ -9,6 +9,7 @@ namespace TrackMyWalks.ViewModels
 {
 	public class WalkEntryPageViewModel : BaseViewModel
 	{
+		bool isAdding;
 		public WalkEntryPageViewModel(INavigationService navService) : base(navService)
 		{
 			if(App.SelectedItem == null )
@@ -16,24 +17,39 @@ namespace TrackMyWalks.ViewModels
 				PageTitle = "Adding Trail Details";
 				App.SelectedItem = new WalkDataModel();
 
+				isAdding = true;
 				Title = "New Trail Entry";
 				Difficulty = "Easy";
 				Distance = 1.0;
 			} else
 			{
 				PageTitle = "Editing Trail Details";
+				isAdding = false;
 			}
 		}
 
-		public bool ValidateFormDetailsAndSave()
+		public async Task<bool> ValidateFormDetailsAndSave()
 		{
-			if (App.SelectedItem != null && !string.IsNullOrWhiteSpace(App.SelectedItem.Title) && !string.IsNullOrWhiteSpace(App.SelectedItem.Description))
+			if (App.SelectedItem != null && 
+				!string.IsNullOrWhiteSpace(App.SelectedItem.Title) && 
+				!string.IsNullOrWhiteSpace(App.SelectedItem.Description) &&
+				!string.IsNullOrWhiteSpace(App.SelectedItem.ImageUrl))
 			{
 				// save to database or model
+				if (IsProcessBusy) return false;
+
+				IsProcessBusy = true;
+
+				await AzureDatabase.SaveWalkEntry(App.SelectedItem, isAdding);
+
+				IsProcessBusy = false;
 			} else
 			{
+				IsProcessBusy = false;
 				return false;
 			}
+
+			IsProcessBusy = false;
 			return true;
 		}
 
@@ -95,6 +111,7 @@ namespace TrackMyWalks.ViewModels
 		{
 			await Task.Factory.StartNew(async () =>
 		   {
+			   IsProcessBusy = false;
 			   await GetMyLocation();
 		   });
 		}
